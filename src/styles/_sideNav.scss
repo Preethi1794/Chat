@@ -1,0 +1,17 @@
+ul.SideNav {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    margin-right: 2rem;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 0;
+    .MuiSvgIcon-root{
+      color: gray;
+      position: relative;
+      &:hover{
+        color: #652dfb;
+      }
+    }
+}
+  
