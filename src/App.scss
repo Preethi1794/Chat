@@ -1,25 +1,8 @@
-$circleColor: #c587ed; 
-
-.signin{
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin circleIcon($color) {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background: $color;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 0;
-  margin-left: 1rem;
-}
+@import './styles/hoverStyle';
+@import './styles/contacts';
+@import './styles/chat';
+@import './styles/contactInfo';
+@import './styles/sideNav';
 
 .App {
   background-color: #9186f7;
@@ -61,7 +44,13 @@ $circleColor: #c587ed;
   }
 }
 
-@import './styles/sideNav';
+.signin{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .messageContainer {
   flex:1;
@@ -70,10 +59,18 @@ $circleColor: #c587ed;
   overflow: hidden;
 }
 
-@import './styles/hoverStyle';
-@import './styles/contacts';
-@import './styles/chat';
-@import './styles/contactInfo';
+@mixin circleIcon($color) {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: $color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+  margin-left: 1rem;
+}
 
 .PurpleCircle {
   @include circleIcon(#c587ed); 
