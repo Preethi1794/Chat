@@ -19,7 +19,7 @@ export default function CustomScrollDiv({ children, className, ...restProps }) {
   }, [hovering]);
 
   const handleDocumentMouseUp = useCallback(
-    e => {
+    (e) => {
       if (isDragging) {
         e.preventDefault();
         setDragging(false);
@@ -29,7 +29,7 @@ export default function CustomScrollDiv({ children, className, ...restProps }) {
   );
 
   const handleDocumentMouseMove = useCallback(
-    e => {
+    (e) => {
       if (isDragging) {
         e.preventDefault();
         e.stopPropagation();
@@ -55,7 +55,7 @@ export default function CustomScrollDiv({ children, className, ...restProps }) {
     [isDragging, lastScrollThumbPosition, scrollBoxHeight, scrollBoxTop]
   );
 
-  const handleScrollThumbMouseDown = useCallback(e => {
+  const handleScrollThumbMouseDown = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
     setScrollThumbPosition(e.clientY);

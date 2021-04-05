@@ -1,57 +1,65 @@
-import React ,{useContext, useCallback} from 'react'
-import {googleAuthProvider, auth} from '../firebase'
-import {Redirect, useHistory} from 'react-router-dom'
-import * as ROUTES from '../routes'
-import { AuthContext } from '../contexts/AuthContext';
-import '../App.scss';
-import {motion} from 'framer-motion' 
+import React, { useContext, useCallback } from "react";
+import { googleAuthProvider, auth } from "../firebase";
+import { Redirect, useHistory } from "react-router-dom";
+import * as ROUTES from "../routes";
+import { AuthContext } from "../contexts/AuthContext";
+import "../App.scss";
+import { motion } from "framer-motion";
 
-export function SignIn() {   
-    const { currentUser } = useContext(AuthContext)
+const scaleVariants = {
+  hover: {
+    scale: 1.1,
+  },
+};
 
-    const signInWithGoogle = useCallback(
-        async e => {
-            try{
-                await auth.signInWithPopup(googleAuthProvider)
-            }catch(error){
-                alert(error)
-            }
-        }, [])
+export function SignIn() {
+  const { currentUser } = useContext(AuthContext);
 
-    if(currentUser){
-        return <Redirect to={ROUTES.HOME} />
+  const signInWithGoogle = useCallback(async (e) => {
+    try {
+      await auth.signInWithPopup(googleAuthProvider);
+    } catch (error) {
+      alert(error);
     }
+  }, []);
 
-    return(
-        <div className="signin">
-            <button onClick={signInWithGoogle}>Sign in with Google</button>
-        </div>
-    )
+  if (currentUser) {
+    return <Redirect to={ROUTES.HOME} />;
+  }
+
+  return (
+    <div className="signin">
+      <motion.button
+        variants={scaleVariants}
+        whileHover="hover"
+        onClick={signInWithGoogle}
+      >
+        Sign in with Google
+      </motion.button>
+    </div>
+  );
 }
 
 export function SignOut() {
-    const history = useHistory()
-    const scaleVariants = {
-        hover: {
-          scale: 1.1,
-        }
-      }
-      
-    async function handleSignOut(){
-        try{
-            await auth.signOut()
-            history.push('/')
-        }catch(error){
-            alert(error)
-        }       
+  const history = useHistory();
+  async function handleSignOut() {
+    try {
+      await auth.signOut();
+      history.push("/");
+    } catch (error) {
+      alert(error);
     }
+  }
 
-    return auth.currentUser && (
-        <motion.button 
-                variants={scaleVariants}
-                whileHover="hover"
-                onClick={handleSignOut}>
-                Sign Out
-        </motion.button>
+  return (
+    auth.currentUser && (
+      <motion.button
+        variants={scaleVariants}
+        whileHover="hover"
+        onClick={handleSignOut}
+      >
+        Sign Out
+      </motion.button>
     )
+  );
 }
